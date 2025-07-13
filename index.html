@@ -3,58 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Vitamina D</title>
+    <title>Calculadora de Vitamina D ☀️</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3e0ff 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1a3c6e;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #2c5282;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 1px solid #a0aec0;
+            padding: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #3182ce;
+            box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #3182ce, #63b3ed);
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #2b6cb0, #4299e1);
+        }
+
+        .alert {
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #results {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-in;
+        }
+
+        #results p {
+            font-size: 1.1rem;
+            color: #2d3748;
+        }
+
+        .btn-dark, .btn-primary, .btn-success {
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-dark:hover, .btn-primary:hover, .btn-success:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Calculadora de Vitamina D</h1>
-        <div id="loading" class="text-center">Carregando...</div>
+        <h1 class="text-center mb-4">Calculadora de Vitamina D ☀️</h1>
+        <div id="loading" class="text-center">Carregando... ⏳</div>
         <div id="error" class="alert alert-danger d-none"></div>
         
         <!-- User Input Form -->
-        <form id="userForm" class="mb-4">
+        <form id="userForm" class="mb-4 card p-4 shadow-sm">
             <div class="mb-3">
-                <label for="skinType" class="form-label">Tipo de Pele (Escala Fitzpatrick)</label>
+                <label for="skinType" class="form-label">Tipo de Pele (Escala Fitzpatrick) 🌞</label>
                 <select id="skinType" class="form-select" required>
                     <option value="">Selecione</option>
-                    <option value="1">Tipo I: Muito clara, sempre queima</option>
-                    <option value="2">Tipo II: Clara, geralmente queima</option>
-                    <option value="3">Tipo III: Clara, às vezes queima</option>
-                    <option value="4">Tipo IV: Média, raramente queima</option>
-                    <option value="5">Tipo V: Escura, muito raramente queima</option>
-                    <option value="6">Tipo VI: Muito escura, nunca queima</option>
+                    <option value="1">Tipo I: Muito clara, sempre queima 😓</option>
+                    <option value="2">Tipo II: Clara, geralmente queima 😖</option>
+                    <option value="3">Tipo III: Clara, às vezes queima 😐</option>
+                    <option value="4">Tipo IV: Média, raramente queima 😊</option>
+                    <option value="5">Tipo V: Escura, muito raramente queima 😎</option>
+                    <option value="6">Tipo VI: Muito escura, nunca queima 🛡️</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="clothing" class="form-label">Vestimenta</label>
+                <label for="clothing" class="form-label">Vestimenta 👗</label>
                 <select id="clothing" class="form-select" required>
                     <option value="">Selecione</option>
-                    <option value="1.0">Nu (100%)</option>
-                    <option value="0.8">Mínimo/Roupas de banho (80%)</option>
-                    <option value="0.4">Leve/Shorts e camiseta (40%)</option>
-                    <option value="0.15">Moderado/Mangas longas (15%)</option>
-                    <option value="0.05">Pesado/Totalmente coberto (5%)</option>
+                    <option value="1.0">Nu (100%) 🩳</option>
+                    <option value="0.8">Mínimo/Roupas de banho (80%) 🩱</option>
+                    <option value="0.4">Leve/Shorts e camiseta (40%) 👕</option>
+                    <option value="0.15">Moderado/Mangas longas (15%) 🧥</option>
+                    <option value="0.05">Pesado/Totalmente coberto (5%) 🧣</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="age" class="form-label">Idade</label>
+                <label for="age" class="form-label">Idade 🎂</label>
                 <input type="number" id="age" class="form-control" min="0" max="120" required>
             </div>
-            <button type="submit" class="btn btn-primary">Calcular</button>
+            <button type="submit" class="btn btn-primary w-100">Calcular 🚀</button>
         </form>
 
         <!-- Results Section -->
-        <div id="results" class="d-none">
-            <h3>Resultados</h3>
-            <p><strong>Índice UV:</strong> <span id="uvIndex"></span></p>
-            <p><strong>Taxa de Vitamina D:</strong> <span id="vitaminDRate"></span> IU/hora</p>
-            <p><strong>Tempo para Queimadura:</strong> <span id="burnTime"></span> minutos</p>
-            <p id="winterWarning" class="text-warning d-none">Aviso: Durante os meses de inverno (novembro a fevereiro) em latitudes acima de 35°, a síntese de vitamina D pode ser insuficiente. Considere suplementação.</p>
+        <div id="results" class="d-none card p-4 shadow-sm">
+            <h3>Resultados 📊</h3>
+            <p><strong>Índice UV:</strong> <span id="uvIndex"></span> ☀️</p>
+            <p><strong>Taxa de Vitamina D:</strong> <span id="vitaminDRate"></span> IU/hora 💊</p>
+            <p><strong>Tempo para Queimadura:</strong> <span id="burnTime"></span> minutos ⏰</p>
+            <p id="winterWarning" class="text-warning d-none">Aviso: Durante os meses de inverno (novembro a fevereiro) em latitudes acima de 35°, a síntese de vitamina D pode ser insuficiente. Considere suplementação. ❄️</p>
+            <p><strong>Benefícios da Vitamina D:</strong> A vitamina D fortalece ossos 🦴, melhora a imunidade 🛡️ e apoia a saúde mental 😊. Ela ajuda na absorção de cálcio, previne doenças como osteoporose e pode reduzir o risco de infecções. Exposição solar moderada é uma ótima forma de obtê-la! ☀️</p>
+            <!-- Share Section -->
+            <h4 class="mt-4">Compartilhar Resultados 📣</h4>
+            <div class="d-flex gap-2">
+                <a id="shareX" class="btn btn-dark" href="#" target="_blank"><i class="fab fa-x-twitter"></i> X</a>
+                <a id="shareFacebook" class="btn btn-primary" href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                <a id="shareWhatsApp" class="btn btn-success" href="#" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userForm = document.getElementById('userForm');
+            const loading = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
+            const resultsDiv = document.getElementById('results');
+            const uvIndexSpan = document.getElementById('uvIndex');
+            const vitaminDRateSpan = document.getElementById('vitaminDRate');
+            const burnTimeSpan = document.getElementById('burnTime');
+            const winterWarning = document.getElementById('winterWarning');
+            const shareX = document.getElementById('shareX');
+            const shareFacebook = document.getElementById('shareFacebook');
+            const shareWhatsApp = document.getElementById('shareWhatsApp');
+
+            // Load saved user preferences
+            const savedSkinType = localStorage.getItem('skinType');
+            const savedClothing = localStorage.getItem('clothing');
+            const savedAge = localStorage.getItem('age');
+            if (savedSkinType) document.getElementById('skinType').value = savedSkinType;
+            if (savedClothing) document.getElementById('clothing').value = savedClothing;
+            if (savedAge) document.getElementById('age').value = savedAge;
+
+            // Request geolocation
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => fetchUVData(position.coords.latitude, position.coords.longitude),
+                    error => showError('Erro ao obter geolocalização. Por favor, permita o acesso à localização. 😥')
+                );
+            } else {
+                showError('Geolocalização não é suportada pelo seu navegador. 😕');
+            }
+
+            // Fetch UV Index from Open-Meteo API
+            async function fetchUVData(latitude, longitude) {
+                try {
+                    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=uv_index`);
+                    const data = await response.json();
+                    const uvIndex = data.hourly.uv_index[new Date().getHours()];
+                    loading.classList.add('d-none');
+                    processForm(uvIndex, latitude);
+                } catch (error) {
+                    showError('Erro ao obter dados de UV. Tente novamente mais tarde. 😓');
+                }
+            }
+
+            // Form submission handler
+            userForm.addEventListener('submit', event => {
+                event.preventDefault();
+                const skinType = document.getElementById('skinType').value;
+                const clothing = document.getElementById('clothing').value;
+                const age = parseInt(document.getElementById('age').value);
+
+                // Save preferences
+                localStorage.setItem('skinType', skinType);
+                localStorage.setItem('clothing', clothing);
+                localStorage.setItem('age', age);
+
+                // Re-fetch UV data if needed
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        position => fetchUVData(position.coords.latitude, position.coords.longitude),
+                        error => showError('Erro ao obter geolocalização. 😥')
+                    );
+                }
+            });
+
+            // Process form and calculate results
+            function processForm(uvIndex, latitude) {
+                const skinType = parseInt(document.getElementById('skinType').value);
+                const clothing = parseFloat(document.getElementById('clothing').value);
+                const age = parseInt(document.getElementById('age').value);
+
+                if (!skinType || !clothing || !age) {
+                    showError('Por favor, preencha todos os campos. 😊');
+                    return;
+                }
+
+                // Calculate Vitamin D Rate
+                const baseRate = 21000; // IU/hr
+                const uvFactor = (uvIndex * 3.0) / (4.0 + uvIndex);
+                const skinTypeFactor = [1.25, 1.10, 1.00, 0.70, 0.40, 0.20][skinType - 1];
+                const ageFactor = age <= 20 ? 1.0 : age >= 70 ? 0.25 : 1.0 - ((age - 20) * 0.01);
+                const qualityFactor = getQualityFactor();
+                const adaptationFactor = 1.0;
+
+                const vitaminDRate = baseRate * uvFactor * clothing * skinTypeFactor * ageFactor * qualityFactor * adaptationFactor;
+
+                // Calculate Burn Time
+                const medValues = [150, 250, 425, 600, 850, 1100];
+                const burnTime = (medValues[skinType - 1] / uvIndex) * 0.8;
+
+                // Display Results
+                uvIndexSpan.textContent = uvIndex.toFixed(1);
+                vitaminDRateSpan.textContent = vitaminDRate.toFixed(0);
+                burnTimeSpan.textContent = burnTime.toFixed(0);
+                resultsDiv.classList.remove('d-none');
+
+                // Winter Warning
+                const month = new Date().getMonth();
+                if (Math.abs(latitude) > 35 && (month >= 10 || month <= 1)) {
+                    winterWarning.classList.remove('d-none');
+                } else {
+                    winterWarning.classList.add('d-none');
+                }
+
+                // Share Links
+                const shareText = `Minha taxa de vitamina D é ${vitaminDRate.toFixed(0)} IU/hora com índice UV ${uvIndex.toFixed(1)}! ☀️ Calcule a sua na Calculadora de Vitamina D: ${window.location.href}`;
+                shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+                shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`;
+                shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+            }
+
+            // Simplified Quality Factor based on time of day
+            function getQualityFactor() {
+                const hour = new Date().getHours();
+                if (hour >= 10 && hour <= 15) return 1.0;
+                if (hour >= 8 && hour < 10 || hour > 15 && hour <= 18) return Math.exp(-0.2);
+                return Math.exp(-0.3);
+            }
+
+            // Show error message
+            function showError(message) {
+                errorDiv.textContent = message;
+                errorDiv.classList.remove('d-none');
+                loading.classList.add('d-none');
+            }
+        });
+    </script>
 </body>
 </html>
