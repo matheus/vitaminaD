@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun Day - Calculadora de Vitamina D</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Sun Day - Calculadora de Vitamina D</h1>
+        <div id="loading" class="text-center">Carregando...</div>
+        <div id="error" class="alert alert-danger d-none"></div>
+        
+        <!-- User Input Form -->
+        <form id="userForm" class="mb-4">
+            <div class="mb-3">
+                <label for="skinType" class="form-label">Tipo de Pele (Escala Fitzpatrick)</label>
+                <select id="skinType" class="form-select" required>
+                    <option value="">Selecione</option>
+                    <option value="1">Tipo I: Muito clara, sempre queima</option>
+                    <option value="2">Tipo II: Clara, geralmente queima</option>
+                    <option value="3">Tipo III: Clara, às vezes queima</option>
+                    <option value="4">Tipo IV: Média, raramente queima</option>
+                    <option value="5">Tipo V: Escura, muito raramente queima</option>
+                    <option value="6">Tipo VI: Muito escura, nunca queima</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="clothing" class="form-label">Vestimenta</label>
+                <select id="clothing" class="form-select" required>
+                    <option value="">Selecione</option>
+                    <option value="1.0">Nu (100%)</option>
+                    <option value="0.8">Mínimo/Roupas de banho (80%)</option>
+                    <option value="0.4">Leve/Shorts e camiseta (40%)</option>
+                    <option value="0.15">Moderado/Mangas longas (15%)</option>
+                    <option value="0.05">Pesado/Totalmente coberto (5%)</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Idade</label>
+                <input type="number" id="age" class="form-control" min="0" max="120" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Calcular</button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results" class="d-none">
+            <h3>Resultados</h3>
+            <p><strong>Índice UV:</strong> <span id="uvIndex"></span></p>
+            <p><strong>Taxa de Vitamina D:</strong> <span id="vitaminDRate"></span> IU/hora</p>
+            <p><strong>Tempo para Queimadura:</strong> <span id="burnTime"></span> minutos</p>
+            <p id="winterWarning" class="text-warning d-none">Aviso: Durante os meses de inverno (novembro a fevereiro) em latitudes acima de 35°, a síntese de vitamina D pode ser insuficiente. Considere suplementação.</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
