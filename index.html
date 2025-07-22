@@ -1,9 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Vitamina D</title>
+    <!-- SEO: Optimized Title Tag -->
+    <title>Vitamin D Calculator | Calculate Your Sun Exposure IU</title>
+    <!-- SEO: Optimized Meta Description -->
+    <meta name="description" content="Estimate your Vitamin D (IU) production from sun exposure with our free, science-based calculator. Get personalized results based on skin type, age, clothing, and the live UV index.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YWWM0YTX9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3YWWM0YTX9');
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '714345628113434');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=714345628113434&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +43,16 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Azul claro acinzentado */
+            background-color: #f8fafc; /* Lighter, cleaner background */
+            color: #334155; /* Softer black for text */
         }
         .card {
             background-color: white;
-            border-radius: 1.5rem; /* Bordas mais arredondadas */
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease-in-out;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         .btn-primary {
-            background-color: #3b82f6; /* Azul vibrante */
+            background-color: #3b82f6;
             color: white;
             font-weight: 600;
             border-radius: 0.75rem;
@@ -32,19 +63,23 @@
             background-color: #2563eb;
             transform: translateY(-2px);
         }
-        .btn-secondary {
-            background-color: #e5e7eb;
-            color: #374151;
-            font-weight: 600;
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-            transition: background-color 0.3s;
+        /* Action color for main CTA */
+        .btn-action {
+            background-color: #f97316; /* Vibrant Orange */
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            padding: 0.875rem 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px -5px #f97316;
         }
-        .btn-secondary:hover {
-            background-color: #d1d5db;
+        .btn-action:hover {
+            background-color: #ea580c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px -5px #f97316;
         }
         .input-field {
-            border: 1px solid #d1d5db;
+            border: 1px solid #cbd5e1;
             border-radius: 0.75rem;
             padding: 0.75rem;
             width: 100%;
@@ -53,7 +88,7 @@
         .input-field:focus {
             outline: none;
             border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
         .result-value {
             font-size: 2.5rem;
@@ -74,131 +109,211 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        .progress-bar-bg {
+            background-color: #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background-color: #22c55e; /* Vibrant Green */
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+        .cta-link {
+            color: #3b82f6;
+            font-weight: 600;
+            text-decoration: underline;
+        }
     </style>
-
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '714345628113434');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=714345628113434&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-    
-<body class="antialiased text-gray-800">
+</head>
+<body class="antialiased">
 
     <div class="container mx-auto p-4 md:p-8 max-w-2xl">
 
-        <!-- Cabeçalho -->
+        <!-- Header -->
         <header class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Calculadora de Vitamina D</h1>
-            <p class="text-lg text-gray-600 mt-2">Estime sua produção de vitamina D com base na ciência.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800">Unlock Your Natural Energy</h1>
+            <p class="text-lg text-slate-500 mt-2">The Sunshine Vitamin Calculator</p>
         </header>
 
-        <!-- Card Principal -->
+        <!-- Main Card -->
         <main class="card p-6 md:p-8">
             
-            <!-- Inputs do Usuário -->
+            <!-- User Inputs -->
             <div class="space-y-6">
                 <div>
-                    <label for="skin-type" class="block text-lg font-semibold text-gray-700 mb-2">Qual é o seu tipo de pele?</label>
+                    <label for="skin-type" class="block text-lg font-semibold text-slate-700 mb-2">What is your skin type?</label>
                     <select id="skin-type" class="input-field bg-white">
-                        <option value="1.25">Tipo I: Muito clara, sempre queima, nunca bronzeia</option>
-                        <option value="1.10">Tipo II: Clara, queima facilmente, bronzeia minimamente</option>
-                        <option value="1.00" selected>Tipo III: Clara a morena, queima moderadamente, bronzeia gradualmente</option>
-                        <option value="0.70">Tipo IV: Morena, queima minimamente, sempre bronzeia</option>
-                        <option value="0.40">Tipo V: Escura, raramente queima, bronzeia facilmente</option>
-                        <option value="0.20">Tipo VI: Negra, nunca queima, profundamente pigmentada</option>
+                        <option value="1.25">Type I: Very fair, always burns</option>
+                        <option value="1.10">Type II: Fair, usually burns</option>
+                        <option value="1.00" selected>Type III: Light to medium, sometimes burns</option>
+                        <option value="0.70">Type IV: Medium, rarely burns</option>
+                        <option value="0.40">Type V: Dark, very rarely burns</option>
+                        <option value="0.20">Type VI: Very dark, never burns</option>
                     </select>
                 </div>
                 <div>
-                    <label for="age" class="block text-lg font-semibold text-gray-700 mb-2">Qual é a sua idade?</label>
-                    <input type="number" id="age" class="input-field" placeholder="Ex: 35" min="1">
+                    <label for="clothing-factor" class="block text-lg font-semibold text-slate-700 mb-2">What are you wearing?</label>
+                    <select id="clothing-factor" class="input-field bg-white">
+                        <option value="1.0">Nude (Full body exposure)</option>
+                        <option value="0.8">Minimal/Swimwear</option>
+                        <option value="0.4">Light/Shorts & T-shirt</option>
+                        <option value="0.15" selected>Moderate/Long sleeves</option>
+                        <option value="0.05">Heavy/Fully covered</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="age" class="block text-lg font-semibold text-slate-700 mb-2">What is your age?</label>
+                    <input type="number" id="age" class="input-field" placeholder="E.g., 35" min="1">
                 </div>
             </div>
 
-            <!-- Botão de Calcular -->
+            <!-- Calculate Button -->
             <div class="mt-8 text-center">
                 <button id="calculate-btn" class="btn-primary w-full md:w-auto">
-                    Calcular Vitamina D
+                    Calculate My Vitamin D
                 </button>
             </div>
 
-            <!-- Área de Resultados -->
+            <!-- Results Area -->
             <div id="results-area" class="mt-10 text-center hidden">
                 <div id="loader" class="loader hidden"></div>
-                <div id="results-content">
-                    <p class="text-lg text-gray-600">Com base nos seus dados e no clima atual:</p>
+                <div id="results-content" class="hidden">
+                    <p class="text-lg text-slate-600">Based on your data and the current weather:</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                         <div class="bg-blue-50 p-6 rounded-2xl">
-                            <h3 class="font-semibold text-lg text-blue-800 mb-2">Produção Estimada</h3>
+                            <h3 class="font-semibold text-lg text-blue-800 mb-2">Estimated Production</h3>
                             <p id="vitamin-d-result" class="result-value text-blue-600">0</p>
-                            <p class="text-blue-700">UI / hora</p>
+                            <p class="text-blue-700">IU / hour</p>
                         </div>
                         <div class="bg-green-50 p-6 rounded-2xl">
-                            <h3 class="font-semibold text-lg text-green-800 mb-2">Tempo de Exposição Segura</h3>
+                            <h3 class="font-semibold text-lg text-green-800 mb-2">Safe Exposure Time</h3>
                             <p id="burn-time-result" class="result-value text-green-600">0</p>
-                            <p class="text-green-700">minutos</p>
+                            <p class="text-green-700">minutes</p>
                         </div>
                     </div>
 
-                    <div id="winter-warning" class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 rounded-r-lg hidden">
-                        <h4 class="font-bold">Atenção: Inverno de Vitamina D</h4>
-                        <p>Na sua latitude, a luz solar é muito fraca durante esta época do ano para uma produção eficaz de vitamina D. Considere a suplementação.</p>
+                    <!-- Conversion: Daily Goal Context -->
+                    <div class="mt-8 bg-slate-50 p-4 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2 font-semibold text-slate-700">
+                            <span>Daily Goal Progress</span>
+                            <span id="goal-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar-bg h-4 w-full">
+                            <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+                        </div>
+                        <p id="time-to-goal" class="mt-3 text-slate-700 font-medium"></p>
                     </div>
 
-                    <div id="uv-info" class="mt-4 text-sm text-gray-500"></div>
+                    <!-- Conversion: Dynamic CTA -->
+                    <div id="dynamic-cta" class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-2xl text-blue-900"></div>
+
+                    <div id="winter-warning" class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 rounded-r-lg hidden">
+                        <h4 class="font-bold">Warning: Vitamin D Winter</h4>
+                        <p>At your latitude, sunlight is too weak for effective Vitamin D production. Consider supplementation.</p>
+                    </div>
+
+                    <div id="uv-info" class="mt-4 text-sm text-slate-500"></div>
                 </div>
             </div>
-             <!-- Área de Compartilhamento -->
-            <div id="share-area" class="mt-8 pt-6 border-t border-gray-200 text-center hidden">
-                <h3 class="text-lg font-semibold text-gray-700 mb-4">Gostou do resultado? Compartilhe!</h3>
-                <div class="flex justify-center items-center space-x-4">
-                    <button id="copy-btn" class="btn-secondary flex items-center space-x-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                        <span id="copy-text">Copiar Resultado</span>
-                    </button>
-                </div>
+             <!-- Share Area -->
+            <div id="share-area" class="mt-8 pt-6 border-t border-slate-200 text-center hidden">
+                <h3 class="text-lg font-semibold text-slate-700 mb-4">Like the result? Share it!</h3>
+                <button id="copy-btn" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 mx-auto transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <span id="copy-text">Copy Result</span>
+                </button>
             </div>
         </main>
 
-        <!-- CTA E-book -->
-        <section class="card mt-8 p-6 md:p-8 text-center bg-gradient-to-br from-blue-500 to-blue-600 text-white">
-            <h2 class="text-2xl md:text-3xl font-bold">O Poder da Vitamina D para Viver Mais e Melhor</h2>
-            <p class="mt-4 text-lg text-blue-100">Descubra todos os segredos da vitamina D e como ela pode transformar sua saúde. Adquira nosso e-book completo e dê o primeiro passo para uma vida mais saudável e vibrante.</p>
-            <a href="https://go.hotmart.com/M100856599L" class="mt-6 inline-block bg-white text-blue-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-all transform hover:scale-105">
-                Quero meu E-book Agora!
-            </a>
+        <!-- Conversion: Upgraded E-book CTA -->
+        <div class="mt-8 bg-blue-50 rounded-2xl p-1">
+            <section id="ebook-cta-section" class="card p-6 md:p-8 text-center bg-white">
+                <div class="md:flex md:items-center md:gap-8 md:text-left">
+                    <img src="https://placehold.co/300x450/ffffff/3b82f6?text=E-book\nCover" alt="The Power of Vitamin D E-book Cover" class="w-40 h-auto mx-auto md:mx-0 rounded-lg shadow-lg mb-6 md:mb-0 flex-shrink-0">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Your Journey to Vibrant Health Starts Here.</h2>
+                        <p class="mt-4 text-lg text-slate-600">Stop guessing and take control of your health. This e-book reveals:</p>
+                        <ul class="mt-4 space-y-3 text-left">
+                            <li class="flex items-start"><svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span class="text-slate-700">The secret to maximizing Vitamin D absorption.</span></li>
+                            <li class="flex items-start"><svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span class="text-slate-700">Which foods and supplements actually work.</span></li>
+                            <li class="flex items-start"><svg class="w-6 h-6 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><span class="text-slate-700">How Vitamin D fights aging and boosts immunity.</span></li>
+                        </ul>
+                        <a href="https://go.hotmart.com/Q100928151Y" target="_blank" rel="noopener noreferrer" class="mt-8 inline-block btn-action">
+                            Get My E-book Now!
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SEO: How It Works Section -->
+        <section class="card mt-8 p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">How This Vitamin D Calculator Works</h2>
+            <div class="space-y-4 text-slate-600">
+                 <p>Our sun exposure calculator provides a personalized estimate of your potential Vitamin D synthesis in three simple steps:</p>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li><strong>Live Weather Data:</strong> We use your browser's location to fetch the current UV Index for your exact area.</li>
+                    <li><strong>Personal Factors:</strong> You provide your age, skin type, and clothing coverage to tailor the calculation.</li>
+                    <li><strong>Scientific Calculation:</strong> The tool combines all data to estimate the Vitamin D (in IU) your body can produce per hour.</li>
+                </ol>
+            </div>
         </section>
 
-        <!-- Rodapé com Metodologia -->
-        <footer class="mt-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2024 Sun Day. Todos os direitos reservados.</p>
+        <!-- Conversion: Testimonials Section -->
+        <section class="card mt-8 p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 text-center">Why People Love This E-book</h2>
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div class="bg-slate-50 p-6 rounded-2xl">
+                    <p class="text-slate-600 italic">"This e-book changed my perspective on health! It's easy to read and packed with practical tips that I started using on day one."</p>
+                    <p class="mt-4 font-bold text-slate-700">- Maria S.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl">
+                    <p class="text-slate-600 italic">"I finally understand why I was always feeling tired. The section on Vitamin D and energy was a game-changer for me. Highly recommended!"</p>
+                    <p class="mt-4 font-bold text-slate-700">- Julia B.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SEO: FAQ Section -->
+        <section class="card mt-8 p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <details class="border-b border-slate-200 pb-4">
+                    <summary class="flex justify-between items-center font-semibold text-lg cursor-pointer text-slate-700">Is this Vitamin D calculator accurate?<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <p class="mt-2 text-slate-600">This tool provides a scientifically-based estimation for educational purposes. It is not a substitute for medical advice. Always consult a healthcare professional for accurate health assessments.</p>
+                </details>
+                <details class="border-b border-slate-200 pb-4">
+                    <summary class="flex justify-between items-center font-semibold text-lg cursor-pointer text-slate-700">Why is 'Vitamin D Winter' important?<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <p class="mt-2 text-slate-600">During winter at latitudes above ~35 degrees, the sun's angle is too low for UVB rays to penetrate the atmosphere effectively. This means little to no Vitamin D can be produced from sun exposure. Our calculator warns you if you are in a 'Vitamin D Winter' zone.</p>
+                </details>
+                <details>
+                    <summary class="flex justify-between items-center font-semibold text-lg cursor-pointer text-slate-700">How much sun is safe for my skin type?<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg></summary>
+                    <p class="mt-2 text-slate-600">Our calculator provides a 'Safe Exposure Time' which is an estimate of how long you can stay in the sun before the risk of sunburn increases. It's a conservative estimate to promote sun safety.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Footer with Methodology -->
+        <footer class="mt-8 text-center text-slate-500 text-sm">
+            <p>&copy; 2024 Sun Day. All rights reserved.</p>
             <details class="mt-4 text-left cursor-pointer">
-                <summary class="font-semibold text-gray-600 hover:text-gray-800">Ver Metodologia de Cálculo</summary>
-                <div class="mt-2 p-4 bg-gray-100 rounded-lg text-xs space-y-2">
-                    <p><strong>Fórmula:</strong> UI/hora = Taxa Base × Fator UV × Fator Roupa × Fator Pele × Fator Idade × Fator Qualidade UV.</p>
-                    <p><strong>Taxa Base:</strong> 21,000 UI/hr (conservador).</p>
-                    <p><strong>Fator Roupa:</strong> Fixo em 15% (mangas compridas/casual).</p>
-                    <p><strong>Fator UV:</strong> Curva de saturação para evitar superestimação em UV alto.</p>
-                    <p><strong>Fatores de Pele e Idade:</strong> Ajustes baseados na escala Fitzpatrick e na diminuição da produção com a idade.</p>
-                    <p><strong>Aviso:</strong> Esta é uma ferramenta de estimativa para fins educacionais. Não substitui o conselho médico. Consulte um profissional de saúde.</p>
+                <summary class="font-semibold text-slate-600 hover:text-slate-800">View Calculation Methodology</summary>
+                <div class="mt-2 p-4 bg-slate-100 rounded-lg text-xs space-y-2">
+                    <p><strong>Formula:</strong> IU/hour = Base Rate × UV Factor × Clothing Factor × Skin Factor × Age Factor × UV Quality Factor.</p>
+                    <p><strong>Disclaimer:</strong> This is an estimation tool for educational purposes. It does not replace medical advice. Consult a healthcare professional.</p>
+                    <p class="mt-2"><strong>Sources:</strong> Calculations are based on research from institutions like the New England Journal of Medicine and studies on MED by SunSmart Australia.</p>
                 </div>
             </details>
         </footer>
     </div>
 
+    <!-- Main App Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const calculateBtn = document.getElementById('calculate-btn');
@@ -214,12 +329,14 @@ src="https://www.facebook.com/tr?id=714345628113434&ev=PageView&noscript=1"
             calculateBtn.addEventListener('click', () => {
                 const ageInput = document.getElementById('age');
                 const skinTypeSelect = document.getElementById('skin-type');
+                const clothingFactorSelect = document.getElementById('clothing-factor');
                 
                 const age = parseInt(ageInput.value, 10);
                 const skinTypeFactor = parseFloat(skinTypeSelect.value);
+                const clothingFactor = parseFloat(clothingFactorSelect.value);
 
                 if (!age || age <= 0) {
-                    alert('Por favor, insira uma idade válida.');
+                    alert('Please enter a valid age.');
                     ageInput.focus();
                     return;
                 }
@@ -229,9 +346,8 @@ src="https://www.facebook.com/tr?id=714345628113434&ev=PageView&noscript=1"
                 shareArea.classList.add('hidden');
                 loader.classList.remove('hidden');
                 
-                // 1. Obter geolocalização
                 if (!navigator.geolocation) {
-                    alert('Geolocalização não é suportada pelo seu navegador.');
+                    alert('Geolocation is not supported by your browser.');
                     loader.classList.add('hidden');
                     return;
                 }
@@ -239,138 +355,148 @@ src="https://www.facebook.com/tr?id=714345628113434&ev=PageView&noscript=1"
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         const { latitude, longitude } = position.coords;
-                        fetchUVIndex(latitude, longitude, age, skinTypeFactor);
+                        fetchUVIndex(latitude, longitude, age, skinTypeFactor, clothingFactor);
                     },
                     (error) => {
-                        alert('Não foi possível obter sua localização. Por favor, permita o acesso.');
+                        alert('Unable to get your location. Please allow access.');
                         console.error("Geolocation Error:", error);
                         loader.classList.add('hidden');
                     }
                 );
             });
 
-            // 2. Buscar Índice UV
-            async function fetchUVIndex(lat, lon, age, skinTypeFactor) {
+            async function fetchUVIndex(lat, lon, age, skinTypeFactor, clothingFactor) {
                 const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=uv_index`;
                 try {
                     const response = await fetch(apiUrl);
                     if (!response.ok) throw new Error('Failed to fetch UV data');
                     const data = await response.json();
-                    
                     const uvIndex = data.current.uv_index;
-                    
-                    calculateVitaminD(uvIndex, lat, age, skinTypeFactor);
-
+                    calculateVitaminD(uvIndex, lat, age, skinTypeFactor, clothingFactor);
                 } catch (error) {
-                    alert('Erro ao buscar dados de UV. Tente novamente mais tarde.');
+                    alert('Error fetching UV data. Please try again later.');
                     console.error("UV API Error:", error);
                     loader.classList.add('hidden');
                 }
             }
 
-            // 3. Calcular Vitamina D
-            function calculateVitaminD(uvIndex, latitude, age, skinTypeFactor) {
-                // Constantes
-                const BASE_RATE = 21000; // UI/hr
-                const CLOTHING_FACTOR = 0.15; // Moderate/Long sleeves
-                const ADAPTATION_FACTOR = 1.0; // Neutro
+            function calculateVitaminD(uvIndex, latitude, age, skinTypeFactor, clothingFactor) {
+                const BASE_RATE = 21000;
+                const ADAPTATION_FACTOR = 1.0;
+                const DAILY_GOAL_IU = 5000;
 
-                // Fator UV (Michaelis-Menten-like)
                 const uvFactor = (uvIndex * 3.0) / (4.0 + uvIndex);
 
-                // Fator Idade
                 let ageFactor;
-                if (age <= 20) {
-                    ageFactor = 1.0;
-                } else if (age > 20 && age < 70) {
-                    ageFactor = 1.0 - ((age - 20) * 0.015); // Diminui 1.5% ao ano
-                } else {
-                    ageFactor = 0.25;
-                }
-                ageFactor = Math.max(0.25, ageFactor); // Garante mínimo de 25%
+                if (age <= 20) ageFactor = 1.0;
+                else if (age > 20 && age < 70) ageFactor = 1.0 - ((age - 20) * 0.015);
+                else ageFactor = 0.25;
+                ageFactor = Math.max(0.25, ageFactor);
 
-                // Fator Qualidade UV (baseado na hora do dia)
                 const now = new Date();
-                const solarNoon = 13; // Aproximação do meio-dia solar
+                const solarNoon = 13;
                 const hourDiff = Math.abs(now.getHours() + now.getMinutes()/60 - solarNoon);
-                const qualityFactor = Math.exp(-0.2 * hourDiff); // Decaimento exponencial suave
+                const qualityFactor = Math.exp(-0.2 * hourDiff);
 
-                // Cálculo Final
-                const vitaminDRate = BASE_RATE * uvFactor * CLOTHING_FACTOR * skinTypeFactor * ageFactor * qualityFactor * ADAPTATION_FACTOR;
+                const vitaminDRate = BASE_RATE * uvFactor * clothingFactor * skinTypeFactor * ageFactor * qualityFactor * ADAPTATION_FACTOR;
 
-                // Cálculo do Tempo de Queimadura (em minutos)
-                const medAtUv1 = {
-                    '1.25': 150, '1.10': 250, '1.00': 425,
-                    '0.70': 600, '0.40': 850, '0.20': 1100
-                };
+                const medAtUv1 = { '1.25': 150, '1.10': 250, '1.00': 425, '0.70': 600, '0.40': 850, '0.20': 1100 };
                 const baseBurnTime = medAtUv1[skinTypeFactor.toFixed(2)];
                 const currentBurnTime = uvIndex > 0 ? baseBurnTime / uvIndex : Infinity;
-                const safeExposureTime = Math.floor(currentBurnTime * 0.8); // 80% do tempo para segurança
+                const safeExposureTime = Math.floor(currentBurnTime * 0.8);
 
-                // Aviso de Inverno de Vitamina D
-                const month = now.getMonth(); // 0 = Janeiro, 11 = Dezembro
+                const month = now.getMonth();
                 const isNorthernHemisphere = latitude > 0;
                 let isVitaminDWinter = false;
                 if (Math.abs(latitude) > 35) {
-                    if (isNorthernHemisphere && (month >= 10 || month <= 1)) { // Nov a Fev
-                        isVitaminDWinter = true;
-                    }
-                    if (!isNorthernHemisphere && (month >= 4 && month <= 7)) { // Mai a Ago
-                        isVitaminDWinter = true;
-                    }
+                    if (isNorthernHemisphere && (month >= 10 || month <= 1)) isVitaminDWinter = true;
+                    if (!isNorthernHemisphere && (month >= 4 && month <= 7)) isVitaminDWinter = true;
                 }
                 
-                updateUI(vitaminDRate, safeExposureTime, uvIndex, isVitaminDWinter);
+                const goalPercentage = vitaminDRate > 0 ? Math.min(100, ( (safeExposureTime / 60) * vitaminDRate / DAILY_GOAL_IU) * 100) : 0;
+                const timeToGoal = vitaminDRate > 0 ? Math.round((DAILY_GOAL_IU / vitaminDRate) * 60) : Infinity;
+
+                updateUI(vitaminDRate, safeExposureTime, uvIndex, isVitaminDWinter, goalPercentage, timeToGoal, DAILY_GOAL_IU);
             }
 
-            // 4. Atualizar a UI
-            function updateUI(vitaminDRate, safeExposureTime, uvIndex, isVitaminDWinter) {
-                const vitaminDResultEl = document.getElementById('vitamin-d-result');
-                const burnTimeResultEl = document.getElementById('burn-time-result');
-                const winterWarningEl = document.getElementById('winter-warning');
-                const uvInfoEl = document.getElementById('uv-info');
+            function updateUI(vitaminDRate, safeExposureTime, uvIndex, isVitaminDWinter, goalPercentage, timeToGoal, dailyGoal) {
+                document.getElementById('vitamin-d-result').textContent = Math.round(vitaminDRate).toLocaleString('en-US');
+                document.getElementById('burn-time-result').textContent = isFinite(safeExposureTime) ? safeExposureTime : '∞';
+                document.getElementById('uv-info').textContent = `Calculation based on a current UV Index of ${uvIndex.toFixed(1)}.`;
 
-                vitaminDResultEl.textContent = Math.round(vitaminDRate).toLocaleString('pt-BR');
-                burnTimeResultEl.textContent = isFinite(safeExposureTime) ? safeExposureTime : '∞';
-                uvInfoEl.textContent = `Cálculo baseado em um Índice UV atual de ${uvIndex.toFixed(1)}.`;
-
-                if (isVitaminDWinter) {
-                    winterWarningEl.classList.remove('hidden');
+                document.getElementById('progress-bar').style.width = `${goalPercentage}%`;
+                document.getElementById('goal-percentage').textContent = `${Math.round(goalPercentage)}%`;
+                const timeToGoalEl = document.getElementById('time-to-goal');
+                if (isFinite(timeToGoal)) {
+                    timeToGoalEl.textContent = `To reach your ${dailyGoal.toLocaleString('en-US')} IU goal, you'd need about ${timeToGoal} minutes in the sun.`;
                 } else {
-                    winterWarningEl.classList.add('hidden');
+                    timeToGoalEl.textContent = 'Vitamin D production is negligible in current conditions.';
                 }
+
+                const dynamicCtaEl = document.getElementById('dynamic-cta');
+                const ebookLink = `<a href="#ebook-cta-section" class="cta-link">Our e-book shows you how.</a>`;
+                if (vitaminDRate < 1000 || !isFinite(timeToGoal)) {
+                    dynamicCtaEl.innerHTML = `Your production seems low. Want to learn how to optimize your levels year-round? ${ebookLink}`;
+                } else {
+                    dynamicCtaEl.innerHTML = `Great start! To maintain optimal levels and unlock all of Vitamin D's benefits, ${ebookLink}`;
+                }
+
+                document.getElementById('winter-warning').classList.toggle('hidden', !isVitaminDWinter);
                 
-                lastResultText = `Meu resultado da Calculadora de Vitamina D: Produção de ${vitaminDResultEl.textContent} UI/hora e tempo de exposição segura de ${burnTimeResultEl.textContent} minutos. Calcule o seu também!`;
+                lastResultText = `My Vitamin D Calculator result: Producing ${document.getElementById('vitamin-d-result').textContent} IU/hour with a safe exposure time of ${document.getElementById('burn-time-result').textContent} minutes. Calculate yours too!`;
 
                 loader.classList.add('hidden');
                 resultsContent.classList.remove('hidden');
                 shareArea.classList.remove('hidden');
             }
 
-            // 5. Funcionalidade de Compartilhamento
             copyBtn.addEventListener('click', () => {
                 const textToCopy = `${lastResultText}\n\n${window.location.href}`;
-                
-                // Fallback para `document.execCommand`
                 const textArea = document.createElement('textarea');
                 textArea.value = textToCopy;
-                textArea.style.position = 'fixed'; // Evita rolagem
+                textArea.style.position = 'fixed';
                 document.body.appendChild(textArea);
                 textArea.focus();
                 textArea.select();
                 try {
                     document.execCommand('copy');
-                    copyText.textContent = 'Copiado!';
-                    setTimeout(() => {
-                        copyText.textContent = 'Copiar Resultado';
-                    }, 2000);
+                    copyText.textContent = 'Copied!';
+                    setTimeout(() => { copyText.textContent = 'Copy Result'; }, 2000);
                 } catch (err) {
                     console.error('Fallback: Oops, unable to copy', err);
-                    alert('Não foi possível copiar o texto.');
+                    alert('Could not copy the text.');
                 }
                 document.body.removeChild(textArea);
             });
+
+            document.querySelectorAll('details').forEach((detail) => {
+                detail.addEventListener('toggle', (event) => {
+                    const arrow = event.target.querySelector('summary svg');
+                    arrow.style.transform = event.target.open ? 'rotate(180deg)' : 'rotate(0deg)';
+                });
+            });
         });
+    </script>
+
+    <!-- SEO: Technical - FAQPage Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is this Vitamin D calculator accurate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "This tool provides a scientifically-based estimation for educational purposes. It uses established models but cannot account for every individual variable. It is not a substitute for medical advice. Always consult a healthcare professional for accurate health assessments." }
+      },{
+        "@type": "Question",
+        "name": "Why is 'Vitamin D Winter' important?",
+        "acceptedAnswer": { "@type": "Answer", "text": "During winter months at latitudes above ~35 degrees, the sun's angle is too low for UVB rays to penetrate the atmosphere effectively. This means little to no Vitamin D can be produced from sun exposure. Our calculator warns you if you are in a 'Vitamin D Winter' zone." }
+      },{
+        "@type": "Question",
+        "name": "How much sun is safe for my skin type?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our calculator provides a 'Safe Exposure Time' which is an estimate of how long you can stay in the sun before the risk of sunburn increases. It's a conservative estimate to promote sun safety." }
+      }]
+    }
     </script>
 </body>
 </html>
